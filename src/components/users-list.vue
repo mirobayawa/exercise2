@@ -1,37 +1,85 @@
 <template>
-  <div class="relative px-4 py-2 bg-white shadow-md rounded-2xl w-full
-    font-medium text-xl font-body text-gray-500 flex flex-row items-start mt-2 border-2
-    justify-around h-12 justify-items-center content-center">
-    <img class="w-10 h-8 rounded-full mx-auto mr-5" :src="users.picture.thumbnail" alt="" >
-    <div class="w-full flex flex-row items-start">
-      {{ users.name.title }}. {{ users.name.first }} {{ users.name.last }}
-    </div>
-    <div class="w-full flex flex-row ml-5">
-      {{ gender }}
-    </div>
-    <div class="mr-5">
-      View
+  <div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg shadow-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs
+                  font-medium text-gray-500 uppercase tracking-wider">
+                  Name
+                </th>
+                <th scope="col" class="px-6 py-3 text-center text-xs
+                  font-medium text-gray-500 uppercase tracking-wider">
+                  Location
+                </th>
+                <th scope="col" class="px-6 py-3 text-center text-xs
+                  font-medium text-gray-500 uppercase tracking-wider">
+                  Gender
+                </th>
+                <th scope="col" class="px-6 py-3 text-center text-xs
+                  font-medium text-gray-500 uppercase tracking-wider">
+                  Phone
+                </th>
+                <th scope="col" class="relative px-6 py-3">
+                  <span class="sr-only">More..</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr v-for="user in usersList" :key="user.login.uuid">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                      <img class="h-10 w-10 rounded-full" :src="user.picture.thumbnail" alt="" />
+                    </div>
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900 text-left">
+                        {{ user.name.title }} {{ user.name.first }} {{ user.name.last }}
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        {{ user.email }}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900"> {{ user.location.city }} </div>
+                  <div class="text-sm text-gray-500"> {{ user.location.state }} </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                   bg-green-100 text-green-800">
+                    {{ user.gender.toUpperCase() }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {{ user.phone }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">More Details..</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
-import { IUsers } from '@/interfaces/user';
+import { defineComponent } from 'vue';
+import useStore from '@/use/use-store';
 
 export default defineComponent({
   name: 'UsersList',
-  props: {
-    users: {
-      type: Object as PropType<IUsers>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const gender = ref(String(props.users.gender).charAt(0).toUpperCase()
-      + String(props.users.gender).slice(1));
+  setup() {
+    const { usersList } = useStore();
+
     return {
-      gender,
+      usersList,
     };
   },
 });

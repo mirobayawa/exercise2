@@ -1,0 +1,124 @@
+pagination component
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200
+    sm:px-6 mt-5 shadow-lg">
+    <div class="flex-1 flex justify-between sm:hidden">
+      <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300
+        text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+        Previous
+      </a>
+      <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border
+        border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+        Next
+      </a>
+    </div>
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div>
+        <!-- <p class="text-sm text-gray-700">
+          Showing
+          {{ ' ' }}
+          <span class="font-medium">1</span>
+          {{ ' ' }}
+          to
+          {{ ' ' }}
+          <span class="font-medium">10</span>
+          {{ ' ' }}
+          of
+          {{ ' ' }}
+          <span class="font-medium">97</span>
+          {{ ' ' }}
+          results
+        </p> -->
+      </div>
+      <div>
+        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+          aria-label="Pagination">
+          <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md
+            border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+            <span class="sr-only">Previous</span>
+            Prev
+          </a>
+          <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500
+            text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+            1
+          </a>
+          <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50
+            relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+            2
+          </a>
+          <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50
+            hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium">
+            3
+          </a>
+          <span class="relative inline-flex items-center px-4 py-2 border border-gray-300
+            bg-white text-sm font-medium text-gray-700">
+            ...
+          </span>
+          <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50
+            hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium">
+            8
+          </a>
+          <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50
+            relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+            9
+          </a>
+          <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50
+            relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+            10
+          </a>
+          <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border
+            border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+            <span class="pi pi-angle-right sr-only h-5 w-5">Next</span>
+            Next
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  dropdown component
+  <Menu as="div" class="relative inline-block text-left">
+      <div>
+        <MenuButton class="inline-flex justify-center w-full rounded-md border-2 border-gray-300
+        shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100
+          focus:ring-indigo-500 mt-3">
+          Gender
+        </MenuButton>
+      </div>
+      <transition enter-active-class="transition ease-out duration-100" enter-from-class=
+      "transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+      leave-active-class="transition ease-in duration-75" leave-from-class="transform
+      opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+        <MenuItems class="origin-top-right absolute right-0 mt-2 w-56 rounded-md
+        shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div class="py-1">
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' :
+              'text-gray-700', 'block px-4 py-2 text-sm']">Both</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' :
+              'text-gray-700', 'block px-4 py-2 text-sm']">Male</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' :
+              'text-gray-700', 'block px-4 py-2 text-sm']">Female</a>
+            </MenuItem>
+          </div>
+        </MenuItems>
+      </transition>
+    </Menu>
+
+    import {
+  Menu, MenuButton, MenuItem, MenuItems,
+} from '@headlessui/vue';
+
+export default defineComponent({
+  name: 'Gender',
+  components: {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+  },
+});
