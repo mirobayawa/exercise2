@@ -10,7 +10,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ['active'],
+      backgroundColor: ['active', 'group-focus'],
+      textDecoration: ['focus-visible'],
     },
   },
   plugins: [],

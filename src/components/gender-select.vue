@@ -58,7 +58,7 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const genderOptions = ([
-      'Both',
+      'All',
       'Male',
       'Female',
     ]);
@@ -68,6 +68,7 @@ export default defineComponent({
     function getUsersByGender() {
       getUsers(Number(route.query.page), selected.value.toLowerCase());
     }
+
     return {
       genderOptions,
       selected,

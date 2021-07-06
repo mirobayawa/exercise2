@@ -5,8 +5,9 @@
       <button class="p-3 rounded-md border-2 border-gray-300 font-normal cursor-pointer"
       @click="previousPage()"> Previous </button>
       <span v-for="(item, index) in new Array(10)" :key="index">
-        <button class="p-3 rounded-md border-2 border-gray-300 font-normal cursor-pointer"
-         @click="viewPage(index)">
+        <button class="p-3 rounded-md border-2 border-gray-300 font-normal cursor-pointer
+         focus:ring-2 focus:ring-gray-500"
+          @click="viewPage(index)">
           {{ index + 1 }}
         </button>
       </span>
@@ -28,7 +29,7 @@ export default defineComponent({
     const page = ({ pageNumber: parseInt(route.query.page as string, 10) || 1 });
     const { getUsers } = useGetUsers();
 
-    getUsers(page.pageNumber, '');
+    getUsers(page.pageNumber, 'all');
 
     function nextPage() {
       if (page.pageNumber < 10) {
