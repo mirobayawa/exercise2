@@ -1,4 +1,4 @@
-pagination component
+(pagination component)
 <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200
     sm:px-6 mt-5 shadow-lg">
     <div class="flex-1 flex justify-between sm:hidden">
@@ -75,7 +75,7 @@ pagination component
     </div>
   </div>
 
-  dropdown component
+  (dropdown component)
   <Menu as="div" class="relative inline-block text-left">
       <div>
         <MenuButton class="inline-flex justify-center w-full rounded-md border-2 border-gray-300

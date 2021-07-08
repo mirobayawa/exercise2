@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import useStore from '@/use/use-store';
+import useStore from '@/composables/use-store';
 
 export default defineComponent({
   name: 'UsersList',

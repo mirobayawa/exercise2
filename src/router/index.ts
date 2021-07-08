@@ -6,6 +6,10 @@ const routes: RouteRecordRaw[] = [
     name: 'Home',
     component: () => import('../views/home.vue'),
   },
+  {
+    path: '/:catchAll(.*)',
+    component: () => import('../views/page-not-found.vue'),
+  },
 ];
 
 const router = createRouter({

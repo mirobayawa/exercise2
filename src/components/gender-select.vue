@@ -44,7 +44,7 @@ import {
   Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions,
 } from '@headlessui/vue';
 import { useRoute } from 'vue-router';
-import { useGetUsers } from '@/use/use-users';
+import { useGetUsers } from '@/composables/use-users';
 
 export default defineComponent({
   name: 'Gender',

@@ -5,8 +5,9 @@
       <button class="p-3 rounded-md border-2 border-gray-300 font-normal cursor-pointer"
       @click="previousPage()"> Previous </button>
       <span v-for="(item, index) in new Array(10)" :key="index">
-        <button class="p-3 rounded-md border-2 border-gray-300 font-normal cursor-pointer
-         focus:ring-2 focus:ring-gray-500"
+        <button :class="[`p-3 rounded-md border-2 border-gray-300 font-normal
+          cursor-pointer focus:ring-2 focus:ring-gray-500`, page.pageNumber == index + 1 ?
+           'bg-gray-400 disabled:opacity-50' : '']"
           @click="viewPage(index)">
           {{ index + 1 }}
         </button>
@@ -18,39 +19,42 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useGetUsers } from '@/use/use-users';
+import { useGetUsers } from '@/composables/use-users';
 
 export default defineComponent({
   name: 'Pagination',
   setup() {
     const route = useRoute();
-    const page = ({ pageNumber: parseInt(route.query.page as string, 10) || 1 });
+    const page = ref({ pageNumber: parseInt(route.query.page as string, 10) || 1 });
     const { getUsers } = useGetUsers();
 
-    getUsers(page.pageNumber, 'all');
+    onMounted(() => {
+      getUsers(page.value.pageNumber, 'all');
+    });
 
     function nextPage() {
-      if (page.pageNumber < 10) {
-        page.pageNumber += 1;
-        getUsers(page.pageNumber, String(route.query.gender));
+      if (page.value.pageNumber < 10) {
+        page.value.pageNumber += 1;
+        getUsers(page.value.pageNumber, String(route.query.gender));
       }
     }
     function previousPage() {
-      if (page.pageNumber > 0) {
-        page.pageNumber -= 1;
-        getUsers(page.pageNumber, String(route.query.gender));
+      if (page.value.pageNumber > 0) {
+        page.value.pageNumber -= 1;
+        getUsers(page.value.pageNumber, String(route.query.gender));
       }
     }
     function viewPage(index: number) {
-      page.pageNumber = index + 1;
-      getUsers(page.pageNumber, String(route.query.gender));
+      page.value.pageNumber = index + 1;
+      getUsers(page.value.pageNumber, String(route.query.gender));
     }
     return {
       nextPage,
       previousPage,
       viewPage,
+      page,
     };
   },
 });
