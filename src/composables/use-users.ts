@@ -3,11 +3,11 @@ import router from '@/router';
 import useApi from './use-api';
 
 const { usersList } = useStore();
-const { fetchUsers } = useApi();
+const api = useApi();
 
-export function useGetUsers() {
+export function useUsers() {
   async function getUsers(pageNumber: number, gender: string) {
-    const data = await fetchUsers(pageNumber, gender);
+    const data = await api.getUsers(pageNumber, gender);
     usersList.value = data.results;
 
     router.push({ name: 'Home', query: { page: pageNumber, gender } });

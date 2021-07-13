@@ -44,7 +44,7 @@ import {
   Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions,
 } from '@headlessui/vue';
 import { useRoute } from 'vue-router';
-import { useGetUsers } from '@/composables/use-users';
+import { useUsers } from '@/composables/use-users';
 
 export default defineComponent({
   name: 'Gender',
@@ -63,7 +63,7 @@ export default defineComponent({
       'Female',
     ]);
     const selected = ref(genderOptions[0]);
-    const { getUsers } = useGetUsers();
+    const { getUsers } = useUsers();
 
     function getUsersByGender() {
       getUsers(Number(route.query.page), selected.value.toLowerCase());

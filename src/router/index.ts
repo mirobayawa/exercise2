@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import RouteNames from '@/enums/route-names';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Home',
+    name: RouteNames.Home,
     component: () => import('../views/home.vue'),
   },
   {

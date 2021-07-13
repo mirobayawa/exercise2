@@ -58,7 +58,7 @@
                   {{ user.phone }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">More Details..</a>
+                  <DetailsModal :user="user"></DetailsModal>
                 </td>
               </tr>
             </tbody>
@@ -70,16 +70,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import useStore from '@/composables/use-store';
+import DetailsModal from './details-modal.vue';
 
 export default defineComponent({
   name: 'UsersList',
+  components: {
+    DetailsModal,
+  },
   setup() {
     const { usersList } = useStore();
+    const displayModal = ref(false);
 
     return {
       usersList,
+      DetailsModal,
+      displayModal,
     };
   },
 });

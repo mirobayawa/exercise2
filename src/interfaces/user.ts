@@ -15,7 +15,7 @@ export interface Registered {
 }
 
 export interface Dob {
-  data: string;
+  date: string;
   age: number;
 }
 
@@ -58,6 +58,10 @@ export interface Name {
   title: string;
   first: string;
   last: string;
+}
+
+export interface HttpResponse<IUsers> extends Response {
+  parsedBody?: IUsers,
 }
 
 export interface IUsers {

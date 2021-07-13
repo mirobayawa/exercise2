@@ -21,14 +21,14 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useGetUsers } from '@/composables/use-users';
+import { useUsers } from '@/composables/use-users';
 
 export default defineComponent({
   name: 'Pagination',
   setup() {
     const route = useRoute();
     const page = ref({ pageNumber: parseInt(route.query.page as string, 10) || 1 });
-    const { getUsers } = useGetUsers();
+    const { getUsers } = useUsers();
 
     onMounted(() => {
       getUsers(page.value.pageNumber, 'all');
@@ -41,7 +41,7 @@ export default defineComponent({
       }
     }
     function previousPage() {
-      if (page.value.pageNumber > 0) {
+      if (page.value.pageNumber > 1) {
         page.value.pageNumber -= 1;
         getUsers(page.value.pageNumber, String(route.query.gender));
       }

@@ -22,12 +22,13 @@
 <script lang="ts">
 import router from '@/router';
 import { defineComponent } from 'vue';
+import RouteNames from '@/enums/route-names';
 
 export default defineComponent({
   name: 'PageNotFound',
   setup() {
     function toHome() {
-      router.push({ name: 'Home' });
+      router.push({ name: RouteNames.Home });
     }
     return {
       toHome,
